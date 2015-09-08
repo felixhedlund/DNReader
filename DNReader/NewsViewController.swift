@@ -48,6 +48,7 @@ class NewsViewController: UIViewController {
     }
     
     func setTextViewSettings(){
+        textView.userInteractionEnabled = false
         textView.font = UIFont(name: "ArialMT", size: 25)
     }
     

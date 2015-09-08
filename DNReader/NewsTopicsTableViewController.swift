@@ -11,6 +11,7 @@ import UIKit
 class NewsTopicsTableViewController: UITableViewController, XMLParserDelegate {
 
     var xmlParser : XMLParser!
+    @IBOutlet weak var slideshowButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()

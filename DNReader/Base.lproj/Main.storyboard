@@ -128,14 +128,17 @@
                     <navigationItem key="navigationItem" title="DN" id="qME-WC-lmi">
                         <barButtonItem key="leftBarButtonItem" style="done" id="wRD-Ec-gGW">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="P3L-CW-uhv">
-                                <rect key="frame" x="16" y="7" width="39" height="30"/>
+                                <rect key="frame" x="16" y="7" width="71" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Show">
+                                <state key="normal" title="Slideshow">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="slideshowButton" destination="P3L-CW-uhv" id="0FV-5o-Rg0"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pe4-Mg-0dD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
