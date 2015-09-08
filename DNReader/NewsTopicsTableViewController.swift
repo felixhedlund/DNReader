@@ -27,6 +27,7 @@ class NewsTopicsTableViewController: UITableViewController, XMLParserDelegate {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
+    
     func parsingWasFinished() {
         self.tableView.reloadData()
     }

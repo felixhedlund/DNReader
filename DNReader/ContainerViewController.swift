@@ -11,17 +11,26 @@ import UIKit
 class ContainerViewController: UIViewController {
     
     var viewController : UISplitViewController!
+    
+    var maximumColumnWidth: CGFloat!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        maximumColumnWidth = self.viewController.maximumPrimaryColumnWidth
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     
     func setEmbeddedViewController(splitViewController: UISplitViewController!){
         if splitViewController != nil{
@@ -33,6 +42,23 @@ class ContainerViewController: UIViewController {
             
             self.setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Regular), forChildViewController: viewController)
         }
+    }
+    
+    func hideNewsTopics(){
+        
+        UIView.animateWithDuration(0.6, delay: 0.0, options: .CurveEaseOut | .CurveEaseIn, animations: {
+            self.viewController.maximumPrimaryColumnWidth = 0
+            }, completion:{(Bool)  in
+        
+        })
+    }
+    
+    func showNewsTopics(){
+        UIView.animateWithDuration(0.6, delay: 0.0, options: .CurveEaseOut | .CurveEaseIn, animations: {
+            self.viewController.maximumPrimaryColumnWidth = self.maximumColumnWidth
+            }, completion:{(Bool)  in
+                
+        })
     }
 
     /*

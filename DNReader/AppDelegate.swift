@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     var window: UIWindow?
     
     var splitViewController : UISplitViewController?
+    var containerViewController: ContainerViewController!
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -24,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
         
-        let containerViewController : ContainerViewController = ContainerViewController()
+        containerViewController = ContainerViewController()
         containerViewController.setEmbeddedViewController(splitViewController)
         
         window?.rootViewController = containerViewController

@@ -16,6 +16,7 @@
 		F77371851B9EC891002E8909 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77371841B9EC891002E8909 /* NewsViewController.swift */; };
 		F77371871B9EC8A4002E8909 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77371861B9EC8A4002E8909 /* ContainerViewController.swift */; };
 		F77371891B9EC8C1002E8909 /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77371881B9EC8C1002E8909 /* XMLParser.swift */; };
+		F773718D1B9EF99A002E8909 /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F773718C1B9EF99A002E8909 /* Numbers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		F77371841B9EC891002E8909 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		F77371861B9EC8A4002E8909 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		F77371881B9EC8C1002E8909 /* XMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
+		F773718C1B9EF99A002E8909 /* Numbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 		F773715F1B9EC510002E8909 /* DNReader */ = {
 			isa = PBXGroup;
 			children = (
+				F773718B1B9EF974002E8909 /* Globals */,
 				F773718A1B9ED117002E8909 /* Views */,
 				F77371621B9EC510002E8909 /* AppDelegate.swift */,
 				F77371881B9EC8C1002E8909 /* XMLParser.swift */,
@@ -127,6 +130,14 @@
 				F77371861B9EC8A4002E8909 /* ContainerViewController.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		F773718B1B9EF974002E8909 /* Globals */ = {
+			isa = PBXGroup;
+			children = (
+				F773718C1B9EF99A002E8909 /* Numbers.swift */,
+			);
+			name = Globals;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +242,7 @@
 			files = (
 				F77371831B9EC861002E8909 /* NewsTopicsTableViewController.swift in Sources */,
 				F77371891B9EC8C1002E8909 /* XMLParser.swift in Sources */,
+				F773718D1B9EF99A002E8909 /* Numbers.swift in Sources */,
 				F77371871B9EC8A4002E8909 /* ContainerViewController.swift in Sources */,
 				F77371631B9EC510002E8909 /* AppDelegate.swift in Sources */,
 				F77371851B9EC891002E8909 /* NewsViewController.swift in Sources */,
