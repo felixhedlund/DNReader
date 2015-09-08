@@ -133,7 +133,7 @@ class NewsTopicsTableViewController: UITableViewController, XMLParserDelegate {
         
         let container = self.parentViewController?.parentViewController?.parentViewController as! ContainerViewController
         
-        let imageWidth = Numbers.screenWidth/9
+        let imageWidth = Numbers.screenWidth/6
         let imageHeight = imageWidth
         let imageYPos = imageWidth
         
@@ -153,7 +153,7 @@ class NewsTopicsTableViewController: UITableViewController, XMLParserDelegate {
         self.view.addSubview(hideContentView)
         hideContentView.setTranslatesAutoresizingMaskIntoConstraints(false)
         
-        let leadingConstraint = NSLayoutConstraint(item: hideContentView, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: container.view, attribute: NSLayoutAttribute.Leading, multiplier: 0.5, constant: 0)
+        let leadingConstraint = NSLayoutConstraint(item: hideContentView, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: container.view, attribute: NSLayoutAttribute.Leading, multiplier: -0.5, constant: 0)
         container.view.addConstraint(leadingConstraint)
         
         let topConstraint = NSLayoutConstraint(item: hideContentView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: parentSlideShowViewController.view, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: -imageHeight/2)

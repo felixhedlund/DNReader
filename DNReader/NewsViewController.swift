@@ -125,7 +125,6 @@ class NewsViewController: UIViewController {
     
     func showWebContent(){
         if newsURL != nil {
-            println(newsURL)
             let request : NSURLRequest = NSURLRequest(URL: newsURL)
             webView.loadRequest(request)
             
