@@ -8,11 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		F77371631B9EC510002E8909 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77371621B9EC510002E8909 /* AppDelegate.swift */; };
-		F77371651B9EC510002E8909 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77371641B9EC510002E8909 /* ViewController.swift */; };
 		F77371681B9EC510002E8909 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F77371661B9EC510002E8909 /* Main.storyboard */; };
 		F773716A1B9EC510002E8909 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F77371691B9EC510002E8909 /* Images.xcassets */; };
 		F773716D1B9EC510002E8909 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F773716B1B9EC510002E8909 /* LaunchScreen.xib */; };
 		F77371791B9EC510002E8909 /* DNReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77371781B9EC510002E8909 /* DNReaderTests.swift */; };
+		F77371831B9EC861002E8909 /* NewsTopicsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77371821B9EC861002E8909 /* NewsTopicsTableViewController.swift */; };
+		F77371851B9EC891002E8909 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77371841B9EC891002E8909 /* NewsViewController.swift */; };
+		F77371871B9EC8A4002E8909 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77371861B9EC8A4002E8909 /* ContainerViewController.swift */; };
+		F77371891B9EC8C1002E8909 /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77371881B9EC8C1002E8909 /* XMLParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +32,16 @@
 		F773715D1B9EC510002E8909 /* DNReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DNReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F77371611B9EC510002E8909 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F77371621B9EC510002E8909 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F77371641B9EC510002E8909 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F77371671B9EC510002E8909 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F77371691B9EC510002E8909 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F773716C1B9EC510002E8909 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		F77371721B9EC510002E8909 /* DNReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DNReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F77371771B9EC510002E8909 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F77371781B9EC510002E8909 /* DNReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNReaderTests.swift; sourceTree = "<group>"; };
+		F77371821B9EC861002E8909 /* NewsTopicsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTopicsTableViewController.swift; sourceTree = "<group>"; };
+		F77371841B9EC891002E8909 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		F77371861B9EC8A4002E8909 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		F77371881B9EC8C1002E8909 /* XMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +83,9 @@
 		F773715F1B9EC510002E8909 /* DNReader */ = {
 			isa = PBXGroup;
 			children = (
+				F773718A1B9ED117002E8909 /* Views */,
 				F77371621B9EC510002E8909 /* AppDelegate.swift */,
-				F77371641B9EC510002E8909 /* ViewController.swift */,
+				F77371881B9EC8C1002E8909 /* XMLParser.swift */,
 				F77371661B9EC510002E8909 /* Main.storyboard */,
 				F77371691B9EC510002E8909 /* Images.xcassets */,
 				F773716B1B9EC510002E8909 /* LaunchScreen.xib */,
@@ -110,6 +117,16 @@
 				F77371771B9EC510002E8909 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F773718A1B9ED117002E8909 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F77371821B9EC861002E8909 /* NewsTopicsTableViewController.swift */,
+				F77371841B9EC891002E8909 /* NewsViewController.swift */,
+				F77371861B9EC8A4002E8909 /* ContainerViewController.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,8 +229,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F77371651B9EC510002E8909 /* ViewController.swift in Sources */,
+				F77371831B9EC861002E8909 /* NewsTopicsTableViewController.swift in Sources */,
+				F77371891B9EC8C1002E8909 /* XMLParser.swift in Sources */,
+				F77371871B9EC8A4002E8909 /* ContainerViewController.swift in Sources */,
 				F77371631B9EC510002E8909 /* AppDelegate.swift in Sources */,
+				F77371851B9EC891002E8909 /* NewsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
