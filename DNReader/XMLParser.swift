@@ -43,7 +43,6 @@ class XMLParser: NSObject, NSXMLParserDelegate {
             
             if elementName == "link"{
                 foundCharacters = (foundCharacters as NSString).substringFromIndex(7)
-                println(foundCharacters)
             }
             
             currentDataDictionary[currentElement] = foundCharacters
