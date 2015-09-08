@@ -8,6 +8,10 @@
 
 import UIKit
 
+struct SavedState {
+    static var textOnly = false
+}
+
 class ContainerViewController: UIViewController {
     
     var viewController : UISplitViewController!

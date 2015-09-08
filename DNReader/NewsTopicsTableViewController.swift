@@ -29,6 +29,7 @@ class NewsTopicsTableViewController: UITableViewController, XMLParserDelegate {
     
     
     func parsingWasFinished() {
+        xmlParser.arrParsedData.removeAtIndex(0)
         self.tableView.reloadData()
     }
 
@@ -71,7 +72,7 @@ class NewsTopicsTableViewController: UITableViewController, XMLParserDelegate {
         let newsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("idNewsViewController") as! NewsViewController
         
         newsViewController.newsURL = NSURL(string: newsLink!)
-        
+        newsViewController.newsDescription = dictionary["description"]
         showDetailViewController(newsViewController, sender: self)
         
     }

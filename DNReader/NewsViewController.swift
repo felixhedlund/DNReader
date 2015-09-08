@@ -11,10 +11,13 @@ import UIKit
 class NewsViewController: UIViewController {
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var toolbar: UIToolbar!
-    @IBOutlet weak var favoriteButton: UIBarButtonItem!
+    @IBOutlet weak var textSwitch: UISwitch!
+    @IBOutlet weak var textView: UITextView!
     
     var newsURL : NSURL!
+    var newsDescription: String!
     var appDelegate: AppDelegate!
+    var hideContentView: UIView!
     var hideImage: UIImageView!
     var newsTopicsIsHidden: Bool!
     
@@ -23,24 +26,29 @@ class NewsViewController: UIViewController {
         newsTopicsIsHidden = false
         webView.hidden = true
         toolbar.hidden = true
+        textView.hidden = true
         addHideButton()
+        setTextViewSettings()
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        textSwitch.addTarget(self, action: Selector("textSwitchClicked:"), forControlEvents: UIControlEvents.ValueChanged)
+        textSwitch.setOn(SavedState.textOnly, animated: false)
         // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if newsURL != nil {
-            let request : NSURLRequest = NSURLRequest(URL: newsURL)
-            webView.loadRequest(request)
-            
-            if webView.hidden {
-                webView.hidden = false
-                toolbar.hidden = false
-            }
-            
+        self.view.bringSubviewToFront(hideContentView)
+        
+        if(!textSwitch.on){
+            showWebContent()
+        }else{
+            showTextContent()
         }
+    }
+    
+    func setTextViewSettings(){
+        textView.font = UIFont(name: "ArialMT", size: 25)
     }
     
     func addHideButton(){
@@ -49,29 +57,28 @@ class NewsViewController: UIViewController {
         let imageHeight = imageWidth
         let imageYPos = imageWidth
         
-        var contentView = UIView(frame: CGRectMake(0, imageYPos, imageWidth, imageHeight))
-        contentView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        contentView.userInteractionEnabled = true
+        hideContentView = UIView(frame: CGRectMake(0, imageYPos, imageWidth, imageHeight))
+        hideContentView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        hideContentView.userInteractionEnabled = true
         
         hideImage = UIImageView(frame: CGRectMake(0, 0, imageWidth, imageHeight))
         hideImage.image = UIImage(named: "Arrow-left")
-        contentView.addSubview(hideImage)
+        hideContentView.addSubview(hideImage)
         
         var hideButton = UIButton(frame: hideImage.frame)
         hideButton.addTarget(self, action: Selector("hideButtonPressed:"), forControlEvents: .TouchUpInside)
 //        hideButton.addTarget(appDelegate.containerViewController, action: "hideButtonPressed:", forControlEvents: .TouchUpInside)
-        contentView.addSubview(hideButton)
+        hideContentView.addSubview(hideButton)
         
-        self.view.addSubview(contentView)
-        self.view.bringSubviewToFront(contentView)
+        self.view.addSubview(hideContentView)
         
-        let leadingConstraint = NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: -imageWidth/2.5)
+        let leadingConstraint = NSLayoutConstraint(item: hideContentView, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: -imageWidth/2.5)
         self.view.addConstraint(leadingConstraint)
         
-        let topConstraint = NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: imageHeight*2)
+        let topConstraint = NSLayoutConstraint(item: hideContentView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: imageHeight*2)
         self.view.addConstraint(topConstraint)
         
-        let widthConstraint = NSLayoutConstraint (item: contentView,
+        let widthConstraint = NSLayoutConstraint (item: hideContentView,
             attribute: NSLayoutAttribute.Width,
             relatedBy: NSLayoutRelation.Equal,
             toItem: nil,
@@ -80,7 +87,7 @@ class NewsViewController: UIViewController {
             constant: imageWidth)
         self.view.addConstraint(widthConstraint)
         
-        let heightConstraint = NSLayoutConstraint (item: contentView,
+        let heightConstraint = NSLayoutConstraint (item: hideContentView,
             attribute: NSLayoutAttribute.Height,
             relatedBy: NSLayoutRelation.Equal,
             toItem: nil,
@@ -104,15 +111,48 @@ class NewsViewController: UIViewController {
             appDelegate.containerViewController.hideNewsTopics()
         }
     }
+    
+    func textSwitchClicked(sender: UISwitch) {
+        if textSwitch.on {
+            SavedState.textOnly = true
+            showTextContent()
+        } else {
+            SavedState.textOnly = false
+            showWebContent()
+        }
+    }
+    
+    func showWebContent(){
+        if newsURL != nil {
+            let request : NSURLRequest = NSURLRequest(URL: newsURL)
+            webView.loadRequest(request)
+            
+            if webView.hidden {
+                webView.hidden = false
+                toolbar.hidden = false
+                textView.hidden = true
+            }
+            
+        }
+    }
+    
+    func showTextContent(){
+        if newsURL != nil {
+            textView.text = newsDescription
+            
+            if textView.hidden {
+                webView.hidden = true
+                toolbar.hidden = false
+                textView.hidden = false
+            }
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func favoriteNews(sender: AnyObject) {
-    }
-
     /*
     // MARK: - Navigation
 
