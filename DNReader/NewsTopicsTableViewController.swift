@@ -69,7 +69,7 @@ class NewsTopicsTableViewController: UITableViewController, XMLParserDelegate {
         
         let newsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("idNewsViewController") as! NewsViewController
         
-        newsViewController.tutorialURL = NSURL(string: newsLink!)
+        newsViewController.newsURL = NSURL(string: newsLink!)
         
         showDetailViewController(newsViewController, sender: self)
         

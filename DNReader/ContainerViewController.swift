@@ -9,6 +9,8 @@
 import UIKit
 
 class ContainerViewController: UIViewController {
+    
+    var viewController : UISplitViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +23,17 @@ class ContainerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func setEmbeddedViewController(splitViewController: UISplitViewController!){
+        if splitViewController != nil{
+            viewController = splitViewController
+            
+            self.addChildViewController(viewController)
+            self.view.addSubview(viewController.view)
+            viewController.didMoveToParentViewController(self)
+            
+            self.setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Regular), forChildViewController: viewController)
+        }
+    }
 
     /*
     // MARK: - Navigation

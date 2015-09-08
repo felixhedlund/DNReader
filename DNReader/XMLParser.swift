@@ -27,15 +27,26 @@ class XMLParser: NSObject, NSXMLParserDelegate {
         parser.parse()
     }
     
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
+        
+        currentElement = elementName
+    }
+    
+    func parser(parser: NSXMLParser, foundCharacters string: String?) {
+        if (currentElement == "title") || currentElement == "link" || currentElement == "pubDate"{
+            foundCharacters += string!
+        }
+    }
+    
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if !foundCharacters.isEmpty {
             
             if elementName == "link"{
-                foundCharacters = (foundCharacters as NSString).substringFromIndex(3)
+                foundCharacters = (foundCharacters as NSString).substringFromIndex(7)
+                println(foundCharacters)
             }
             
             currentDataDictionary[currentElement] = foundCharacters
-            
             foundCharacters = ""
             
             if currentElement == "pubDate" {
