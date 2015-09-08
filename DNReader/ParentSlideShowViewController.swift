@@ -31,6 +31,7 @@ class ParentSlideShowViewController: UIViewController, UIPageViewControllerDataS
         self.pageViewController.setViewControllers(viewControllers as [AnyObject], direction: .Forward, animated: true, completion: nil)
         self.addChildViewController(pageViewController)
         self.view.addSubview(pageViewController.view)
+        setPageViewControllerConstraints()
         self.pageViewController.didMoveToParentViewController(self)
         
         
@@ -38,6 +39,22 @@ class ParentSlideShowViewController: UIViewController, UIPageViewControllerDataS
         
         
 
+    }
+    
+    func setPageViewControllerConstraints(){
+        self.pageViewController.view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
+        let leadingConstraint = NSLayoutConstraint(item: self.pageViewController.view, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: 0)
+        self.view.addConstraint(leadingConstraint)
+        
+        let trailingConstraint = NSLayoutConstraint(item: self.pageViewController.view, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Trailing, multiplier: 1, constant: 0)
+        self.view.addConstraint(trailingConstraint)
+        
+        let heightConstraint = NSLayoutConstraint(item: self.pageViewController.view, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
+        self.view.addConstraint(heightConstraint)
+        
+        let widthConstraint = NSLayoutConstraint(item: self.pageViewController.view, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0)
+        self.view.addConstraint(widthConstraint)
     }
     
     func slideShow(){
