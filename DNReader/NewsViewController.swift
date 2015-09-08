@@ -13,10 +13,28 @@ class NewsViewController: UIViewController {
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
+    var newsURL : NSURL!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        webView.hidden = true
+        toolbar.hidden = true
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if newsURL != nil {
+            let request : NSURLRequest = NSURLRequest(URL: newsURL)
+            webView.loadRequest(request)
+            
+            if webView.hidden {
+                webView.hidden = false
+                toolbar.hidden = false
+            }
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {

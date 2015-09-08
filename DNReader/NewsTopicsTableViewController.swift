@@ -8,16 +8,27 @@
 
 import UIKit
 
-class NewsTopicsTableViewController: UITableViewController {
+class NewsTopicsTableViewController: UITableViewController, XMLParserDelegate {
 
+    var xmlParser : XMLParser!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let url = NSURL(string: "http://www.dn.se/nyheter/m/rss/")!
+        xmlParser = XMLParser()
+        xmlParser.delegate = self
+        xmlParser.startParsingWithContentsOfURL(url)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    func parsingWasFinished() {
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,26 +39,41 @@ class NewsTopicsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 0
+        return xmlParser.arrParsedData.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("idNewsCell", forIndexPath: indexPath) as! UITableViewCell
+        
+        let currentDictionary = xmlParser.arrParsedData[indexPath.row] as Dictionary<String, String>
+        
+        cell.textLabel?.text = currentDictionary["title"]
+        
         return cell
     }
-    */
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 80
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let dictionary = xmlParser.arrParsedData[indexPath.row] as Dictionary<String, String>
+        let newsLink = dictionary["link"]
+        
+        let newsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("idNewsViewController") as! NewsViewController
+        
+        newsViewController.tutorialURL = NSURL(string: newsLink!)
+        
+        showDetailViewController(newsViewController, sender: self)
+        
+    }
 
     /*
     // Override to support conditional editing of the table view.
