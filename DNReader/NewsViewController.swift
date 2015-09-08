@@ -68,7 +68,7 @@ class NewsViewController: UIViewController {
         
         var hideButton = UIButton(frame: hideImage.frame)
         hideButton.addTarget(self, action: Selector("hideButtonPressed:"), forControlEvents: .TouchUpInside)
-//        hideButton.addTarget(appDelegate.containerViewController, action: "hideButtonPressed:", forControlEvents: .TouchUpInside)
+
         hideContentView.addSubview(hideButton)
         
         self.view.addSubview(hideContentView)
@@ -125,6 +125,7 @@ class NewsViewController: UIViewController {
     
     func showWebContent(){
         if newsURL != nil {
+            println(newsURL)
             let request : NSURLRequest = NSURLRequest(URL: newsURL)
             webView.loadRequest(request)
             

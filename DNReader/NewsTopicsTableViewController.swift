@@ -8,14 +8,20 @@
 
 import UIKit
 
+struct SlideNews {
+    static var urlArray: NSMutableArray!
+}
+
 class NewsTopicsTableViewController: UITableViewController, XMLParserDelegate {
 
     var xmlParser : XMLParser!
     @IBOutlet weak var slideshowButton: UIButton!
+    var urlArray: NSArray!
+    weak var parentSlideShowViewController: ParentSlideShowViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        slideshowButton.addTarget(self, action: "slideShowPressed:", forControlEvents: UIControlEvents.TouchUpInside)
         let url = NSURL(string: "http://www.dn.se/nyheter/m/rss/")!
         xmlParser = XMLParser()
         xmlParser.delegate = self
@@ -32,6 +38,17 @@ class NewsTopicsTableViewController: UITableViewController, XMLParserDelegate {
     func parsingWasFinished() {
         xmlParser.arrParsedData.removeAtIndex(0)
         self.tableView.reloadData()
+        SlideNews.urlArray = NSMutableArray()
+        for index in 0...9 {
+            //SlideNews.urlArray.addObject(NSURL(fileURLWithPath: xmlParser.arrParsedData[index]["link"]!)!)
+            //SlideNews.urlArray.addObject(NSURL(fileURLWithPath: xmlParser.linksArray[index] as! String)!)
+            
+            let dictionary = xmlParser.arrParsedData[index] as Dictionary<String, String>
+            let newsLink = dictionary["link"]
+            SlideNews.urlArray.addObject(newsLink!)
+        }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,6 +92,28 @@ class NewsTopicsTableViewController: UITableViewController, XMLParserDelegate {
         newsViewController.newsURL = NSURL(string: newsLink!)
         newsViewController.newsDescription = dictionary["description"]
         showDetailViewController(newsViewController, sender: self)
+        
+    }
+    
+    func slideShowPressed(sender: UIButton!){
+        parentSlideShowViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ParentSlideShowViewController") as! ParentSlideShowViewController
+        
+        parentSlideShowViewController.view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        let container = self.parentViewController?.parentViewController?.parentViewController as! ContainerViewController
+        
+        container.view.addSubview(parentSlideShowViewController.view)
+        
+        let leadingConstraint = NSLayoutConstraint(item: parentSlideShowViewController.view, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: container.view, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: 0)
+        container.view.addConstraint(leadingConstraint)
+        
+        let trailingConstraint = NSLayoutConstraint(item: parentSlideShowViewController.view, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: container.view, attribute: NSLayoutAttribute.Trailing, multiplier: 1, constant: 0)
+        container.view.addConstraint(trailingConstraint)
+        
+        let topConstraint = NSLayoutConstraint(item: parentSlideShowViewController.view, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: container.view, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
+        container.view.addConstraint(topConstraint)
+        
+        let bottomConstraint = NSLayoutConstraint(item: parentSlideShowViewController.view, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: container.view, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: -Numbers.screenHeight/2)
+        container.view.addConstraint(bottomConstraint)
         
     }
 

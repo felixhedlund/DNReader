@@ -18,6 +18,7 @@ class XMLParser: NSObject, NSXMLParserDelegate {
     var currentDataDictionary = Dictionary<String, String>()
     var currentElement = ""
     var foundCharacters = ""
+    var linksArray = NSMutableArray()
     
     var hasPrinted = 0
     
@@ -44,6 +45,7 @@ class XMLParser: NSObject, NSXMLParserDelegate {
         if !foundCharacters.isEmpty {
             if elementName == "link"{
                 foundCharacters = (foundCharacters as NSString).substringFromIndex(7)
+                linksArray.addObject(foundCharacters)
             }
             
             if elementName == "description"{
